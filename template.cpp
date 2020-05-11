@@ -12,22 +12,21 @@
 #define repA(i,x,y) for(int i = (x) ; i <= (y) ; i++)
 #define repD(i,x,y) for(int i = (x) ; i >= (y) ; i--)
 #define all(c) (c).begin(),(c).end()
-#define rall(c) (c).rbegin(),(c).end()
+#define rall(c) (c).rbegin(),(c).rend()
 #define setval(a,val) memset(a,val,sizeof(a))
 #define Randomize mt19937 rng(chrono::steady_clock::now().time_since_epoch().count())
 #define trav(x , a) for(auto &x : a)
 #define sz(a) ((int)a.size())
 typedef long long ll ; 
-
 #define int ll
-
 using namespace std;
 
-const int N = 3e5 +5 ;
+const int N = 3e5 + 5 ;
 const int mod = 1e9 + 7 ;
 const ll inf = 1e18 ;
 const int SZ = 101 ;
-const double eps = 1e-9 ;
+const long double eps = 1e-9 ;
+
 using namespace __gnu_pbds;
 using ordered_set =  tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> ;
 
@@ -41,9 +40,7 @@ ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>
 
 void solve()
 {
-
-}   
-
+}
      
 int32_t main(int32_t argc, char *argv[])
 {
