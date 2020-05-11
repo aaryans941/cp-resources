@@ -12,7 +12,7 @@
 #define repA(i,x,y) for(int i = (x) ; i <= (y) ; i++)
 #define repD(i,x,y) for(int i = (x) ; i >= (y) ; i--)
 #define all(c) (c).begin(),(c).end()
-#define rall(c) (c).rbegin(),(c).end()
+#define rall(c) (c).rbegin(),(c).rend()
 #define setval(a,val) memset(a,val,sizeof(a))
 #define Randomize mt19937 rng(chrono::steady_clock::now().time_since_epoch().count())
 #define trav(x , a) for(auto &x : a)

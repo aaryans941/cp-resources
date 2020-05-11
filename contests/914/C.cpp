@@ -12,7 +12,7 @@
 #define ff first
 #define ss second   
 #define beg begin
-#define rep(i,n) for(int (i) = 0 ; i < (n) ; i++)
+#define rep(i,n) for(int i = 0 ; i < (n) ; i++)
 #define repA(i,x,y) for(int i = (x) ; i <= (y) ; i++)
 #define repD(i,x,y) for(int i = (x) ; i >= (y) ; i--)
 #define all(c) (c).begin(),(c).end()
@@ -75,6 +75,11 @@ void solve()
     if(n == "1"){
         cout << (k == 0);
         return ;
+    }
+    for(int i = 0 ; i < N ; i += 100){
+            for(int j = i + 99 ; j >= i ;--j){
+                cout << j << '\n'; 
+            }
     }
     vector<int> bruh[1001]; 
     fac[0] = 1;

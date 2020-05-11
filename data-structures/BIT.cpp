@@ -16,5 +16,5 @@ ll psum(ll BIT[], int pos){
 
 ll rsum(ll BIT[] , int l , int r){
     if(l > r) return 0;
-    return psum(r) - psum(l-1);
+    return psum(BIT, r) - psum(BIT , l-1);
 }

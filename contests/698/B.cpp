@@ -41,7 +41,53 @@ ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>
 
 void solve()
 {
+    int n ;
+    cin >> n ;
+    int a[n + 1];
+    rep(i , n) cin >> a[i + 1];
+    int vis[n + 1] = {} ;
+    vector<int> v;
+    repA(i , 1 , n){
+        if(i == a[i]) v.pb(i);
+    }
+    int cnt = 0 , root = -1;
+    if(sz(v) >= 1){
+    //     root = 1; 
+    //     cnt++ ;
+    //     a[1] = 1; 
+    // }else{
+        root = v[0];
+        trav(x , v) a[x] = root , cnt++ /*, cout << 'x'*/ ;
+        
+        cnt-- ;
+    }
+    repA(i , 1, n){
+        // cout << i << ' ';
+       if(!vis[i]){
+            int use = i ;
+            while(!vis[i]){
+                vis[i] = use ;
+                if(vis[a[i]] == use && a[i] != root){
+                    if(root == -1){
+                        root = a[i] ;
+                        int x=  a[i];
+                        a[x] = x ;
+                        cnt++ ;
+                    }else{        
+                        a[i] = root ;
+                        // cout << 'w';
+                        cnt++ ;
+                    }
+                    break ;
+                }
+                i = a[i]; 
+            }
+            i = use ;
+        }
+    }
 
+    cout << cnt << '\n';
+    rep(i , n) cout << a[i + 1] << ' ';
 }   
 
      

@@ -41,7 +41,9 @@ ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>
 
 void solve()
 {
-
+    int a , b , c ; cin >> a >> b >> c ;
+    int res = min(a , min(b/2 , c/4)) * 7;
+    cout << res;
 }   
 
      

@@ -41,7 +41,26 @@ ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>
 
 void solve()
 {
-
+    int n ;
+    cin >> n ;
+    int a[n + 5];
+    rep(i , n) cin >> a[i + 2];
+    int dp[n + 5][2] = {} ;
+    // rep(i , n + 5) dp
+    for(int i = 2 + 0 ; i < 2 + n ; ++i){
+        rep(j , 2){
+            dp[i][j] = min(dp[i-1][j] , dp[i-1][j^1]) + 1; 
+            if(a[i] >> j & 1){
+                dp[i][j] = min(dp[i-1][j^1] , min(dp[i-2][j] , dp[i-2][j^1]) + 1);
+                // dp[i][j] = max ((i ? dp[i-1][j^1] + 1 : 0 + 1) , ((i > 1) ? max(dp[i-2][0] , dp[i-2][1]) + 1 : 0 + 1));
+                // dp[i][j]= (!i ? 0 : dp[i-1][j^1]) + 1;
+            }
+        }
+    }
+    int res = inf;
+    rep(j , 2) res = min(res , dp[n + 1][j]) ; //, cout << dp[i][j] << " \n"[i == n + 1];
+    // cout << (n - res) ;
+    cout << res ;
 }   
 
      

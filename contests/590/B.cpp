@@ -39,9 +39,17 @@ typedef long double ld;
 
 ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>1;x=(x*x)%p;}return res;}
 
+int readint(){
+    int x;
+    cin >> x;
+    return x;
+}
+
 void solve()
 {
-
+    int x1 = nextint() , y1 = nextint(), x2 = nextint(), y2 = nextint();
+    int v_max = nextint() , t = nextint() ;
+    int vx = nextint() , vy = nextint(), wx = nextint(), wy = nextint();
 }   
 
      
