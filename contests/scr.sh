@@ -26,5 +26,3 @@ else
          cp -v --no-clobber ~/cp-resources/template.cpp $1/$c.cpp
     done;
 fi
-touch $1/input.txt $1/output.txt
-

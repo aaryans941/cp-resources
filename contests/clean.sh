@@ -12,8 +12,8 @@ if [[ -d $1 && $# -gt 1 ]]; then
 #                break;
 #        fi;
     done;
-    rem=$(ls $1 | wc -l)
-    if [ $rem -eq 2 ]; then
+    rem=$(ls $1/*.cpp | wc -l)
+    if [ $rem -eq 0 ]; then
         rm -r -v $1
     fi;
 fi;

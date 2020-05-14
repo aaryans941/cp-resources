@@ -3,7 +3,4 @@ if [ "$#" -ne 1 ]; then
     exit 2
 fi;
 
-for c in {A..F}; do
-    ./clean.sh $1 $c
-done;
-
+rm -rf $1/

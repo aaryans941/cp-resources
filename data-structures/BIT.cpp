@@ -1,20 +1,22 @@
-const int M = 5e5 + 5; 
-ll BIT[M];
-
-void upd(ll BIT[] , int pos , ll val){
-    assert(pos>0);
-    for(;pos<M;pos+=pos&-pos)
-        BIT[pos]+= val ;
-}
-
-ll psum(ll BIT[], int pos){
-    ll res = 0;
-    for(;pos>0;pos^=pos&-pos)
-        res+=BIT[pos];
-    return res;
-}
-
-ll rsum(ll BIT[] , int l , int r){
-    if(l > r) return 0;
-    return psum(BIT, r) - psum(BIT , l-1);
-}
+struct BIT{
+    int size;
+    vector<int> container;
+    BIT(int N):size(N),container(N, 0) {}
+    void add(int p, int x) {
+        for (   ; p < size; p |= (p+1)){
+            container[p] += x;
+        }
+    }
+    int range_sum(int l, int r) {
+        if (l > 0) return range_sum(0, r) - range_sum(0, l-1);
+        int res = 0;
+        for (   ; r >= 0; r = (r&(r+1))-1) res += container[r];
+        return res;
+    }
+    int get_val(int p) {
+        return range_sum(p, p);
+    }
+    void set_val(int p, int x) {
+        add(p, x - get_val(p));
+    }
+};

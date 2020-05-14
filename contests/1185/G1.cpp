@@ -12,22 +12,21 @@
 #define repA(i,x,y) for(int i = (x) ; i <= (y) ; i++)
 #define repD(i,x,y) for(int i = (x) ; i >= (y) ; i--)
 #define all(c) (c).begin(),(c).end()
-#define rall(c) (c).rbegin(),(c).end()
+#define rall(c) (c).rbegin(),(c).rend()
 #define setval(a,val) memset(a,val,sizeof(a))
 #define Randomize mt19937 rng(chrono::steady_clock::now().time_since_epoch().count())
 #define trav(x , a) for(auto &x : a)
 #define sz(a) ((int)a.size())
 typedef long long ll ; 
-
 #define int ll
-
 using namespace std;
 
-const int N = 3e5 +5 ;
+const int N = 3e5 + 5 ;
 const int mod = 1e9 + 7 ;
 const ll inf = 1e18 ;
 const int SZ = 101 ;
-const double eps = 1e-9 ;
+const long double eps = 1e-9 ;
+
 using namespace __gnu_pbds;
 using ordered_set =  tree<int,null_type,less<int>,rb_tree_tag,tree_order_statistics_node_update> ;
 
@@ -39,58 +38,43 @@ typedef long double ld;
 
 ll po(ll x,ll y,ll p = mod) {ll res=1;x%=p;while(y>0){if(y&1)res=(res*x)%p;y=y>>1;x=(x*x)%p;}return res;}
 
+int dp[16][16][16][4]; 
+
+int get_dp(int p , int q , int r , int lst){
+    if(!(p>0 || q > 0 || r > 0)) return 1;
+    int& res = dp[p][q][r][lst];
+
+    if(~res) return res;
+    res = 0 ;
+    if(lst != 0 && p) res = (res + (p * get_dp(p - 1, q , r , 0)) % mod ) % mod ;
+    if(lst != 1 && q) res = (res + (q * get_dp(p, q - 1 , r , 1)) % mod ) % mod ;
+    if(lst != 2 && r) res = (res + (r * get_dp(p, q , r - 1 , 2)) % mod ) % mod ;
+    return res ;
+}
+
 void solve()
 {
-    int n , k , a , b; 
-    cin >> n >> k >> a >> b ;
-    char put[2] = {'G' , 'B'}; 
-    if(a > b) swap(a , b) , swap(put[0] , put[1]); 
-    string ans = "" ;
-    if(k == 1){
-        if( b - a > 1 ) {
-                cout << "NO";
-                return;
+    setval(dp , -1);
+    int n , T , ans = 0;
+    cin >> n >> T ;
+    int t[n] , g[n];
+    rep(i , n) cin >> t[i] >> g[i] ;
+    rep(msk , 1 << n){
+        int use = 0 , cnt[3] = {} ;
+        rep(i , n) if(msk >> i & 1) use += t[i] , cnt[g[i] - 1]++ ;
+        if(use == T){
+            ans = (ans + get_dp(cnt[0] , cnt[1] , cnt[2] , 3)) % mod ;
         }
-        else{
-            rep(i , n) ans += put[1-(i%2)];
-            cout << ans ;
-            return ;
-        }
-    }
-    int mil = (a + k - 1) / k , mxl = a ; // a + k - 1) / k ;
-    int blocks = (b + k - 1) / k ;
-    if(blocks - 1 > a){
-            cout << "NO";
-            return;
-    }
-    if(blocks == mxl){
-        while(a || b){
-            rep(i , min(b , k)) ans += put[1];
-            rep(i , min(a , k)) ans += put[0];
-            b -= min(b , k) , a -= min(a , k);
-        }
-    }else{
-       rep(i , min(k , b)) ans += put[1] ;
-       b -= min(b , k);
-       while(a > 0 || b > 0){
-            int use_a = min(a , k);
-            use_a = min(use_a , a-(b-1)/k);
-            a -= use_a ;
-            rep(i , use_a) ans += put[0];
-            rep(i , min(b , k)) ans += put[1];
-            b -= min(b , k);
-       }
     }
     cout << ans ;
-
-}   
-
+}
      
 int32_t main(int32_t argc, char *argv[])
 {
     ios::sync_with_stdio(0);    
     cin.tie(0); cout.tie(0);
     int TC = 1, t = 0;
+    //cin >> TC ;
     while(t++ < TC)
     {
         //cout << "Case #" << t << ": " ;
