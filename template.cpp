@@ -15,7 +15,6 @@
 
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp> 
-#include <atcoder/string>
 
 #define pb push_back
 #define mp make_pair
@@ -34,7 +33,6 @@ typedef long long ll ;
 
 #define int ll
 using namespace std;
-using namespace atcoder;
 
 const int mod = 1e9 + 7 ;
 const ll inf = 1e18 ;
