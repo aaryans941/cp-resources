@@ -53,21 +53,8 @@ struct SegTree
             return;
         }
         int M=(L + R)/2;
-        build(node*2, L, M);
-        build(node*2 + 1, M + 1, R);
-        merge(st[node], st[node*2], st[node*2+1]);
-    }
-
-    void build(int node, int L, int R , vi &a)
-    {
-        if(L==R)
-        {
-            st[node].mn = a[L-1];
-            return;
-        }
-        int M=(L + R)/2;
-        build(node*2, L, M);
-        build(node*2 + 1, M + 1, R);
+        build(node*2, L, M , a);
+        build(node*2 + 1, M + 1, R , a);
         merge(st[node], st[node*2], st[node*2+1]);
     }
 
