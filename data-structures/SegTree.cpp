@@ -1,5 +1,5 @@
 const int SEGTREE_SIZE = 3e5 + 5; 
-node{
+class node{
     int val; 
     node(int b){
         val = b; 
